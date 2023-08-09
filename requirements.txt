@@ -1,0 +1,7 @@
+django==3.2.5
+djangorestframework==3.12.4
+django-cors-headers==4.2.0
+mysql-connector-python==8.1.0
+# This package are only for development proof
+Faker==19.2.0
+django-environ==0.10.0
