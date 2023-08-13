@@ -13,7 +13,7 @@ class Employee(models.Model):
         return f"{self.name} {self.last_name}"
 
 class WorkInformation(models.Model):
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE, related_name='work_information')
     entry_date = models.DateField(default=timezone.now)
     remaining_days = models.PositiveIntegerField(default=0)
     STATE_CHOICES = (
