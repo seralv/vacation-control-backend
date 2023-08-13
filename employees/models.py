@@ -47,7 +47,9 @@ class WorkInformation(models.Model):
             self.remaining_days = 5 * 15 + 5 * 20 + (years_of_service - 10) * 30
         used_vacation_days = VacationHistory.objects.filter(employee=self.employee).aggregate(total_days=models.Sum(models.F('end_date') - models.F('start_date')))['total_days']
         if used_vacation_days:
-            self.remaining_days -= used_vacation_days.days
+            used_days = used_vacation_days.days
+            used_weekends = sum(a for d in (self.entry_date + timedelta(days=i) for i in range(used_days)) if d.weekday() == 6)
+            self.remaining_days -= used_days - used_weekends
         self.save()
 
 class VacationHistory(models.Model):

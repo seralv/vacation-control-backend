@@ -16,7 +16,7 @@ def create_employee():
     name = fake.first_name()
     last_name = fake.last_name()
     address = fake.address()
-    phone = fake.phone_number()[:20]
+    phone = fake.phone_number()[:6]
     position = fake.job()
     return Employee.objects.create(name=name, last_name=last_name, address=address, phone=phone, position=position)
 
